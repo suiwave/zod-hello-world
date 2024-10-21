@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useForm, SubmitHandler, SubmitErrorHandler } from "react-hook-form";
 
-function App() {
-  const [count, setCount] = useState(0)
+type Inputs = {
+  example: string,
+  exampleRequired: string,
+};
+
+export default function App() {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = data => console.log(111, data);
+  const onInvalid: SubmitErrorHandler<Inputs> = data => console.log(222, data);
+
+  console.log(watch("example")) // watch input value by passing the name of it
+  console.log(register("example")) // watch input value by passing the name of it
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
+    /* "handleSubmit" は第2引数に失敗時に実行される関数を受け取る */
+    <form onSubmit={handleSubmit(onSubmit, onInvalid)}>
+      {/* register your input into the hook by invoking the "register" function */}
+      {/* register関数はこんなobjを返却する {name: 'example', onChange: ƒ, onBlur: ƒ, ref: ƒ} */}
+      {/* そのまま...で展開することで、input JSXのプロパティになる仕組み */}
+      {/* https://ja.react.dev/learn/passing-props-to-a-component#forwarding-props-with-the-jsx-spread-syntax */}
+      <input defaultValue="test" {...register("example")} />
 
-export default App
+      {/* include validation with required or other standard HTML validation rules */}
+      <input {...register("exampleRequired", { required: true })} />
+      {/* errors will return when field validation fails  */}
+      {errors.exampleRequired && <span>This field is required</span>}
+
+      <input type="submit" />
+    </form>
+  );
+}
