@@ -38,3 +38,41 @@ const result = mySchema.safeParse("123456");
 // addIssueしたものはissuesにしか反映されない？とかも関係なかった。もういっかここらへんで
 console.log(result.error?.issues);
 console.log(result.error?.errors);
+
+// https://www.npmjs.com/package/zod#default
+// defaultはundefinedをパースしてくれる
+// nullやinvalidな値はerrorになる
+const stringWithDefault = z.string().default("tuna");
+
+console.log(12, stringWithDefault.safeParse("123456"));
+// 12 { success: true, data: '123456' }
+
+console.log(1212, stringWithDefault.safeParse(undefined));
+// 1212 { success: true, data: 'tuna' }
+
+console.log(121212, stringWithDefault.safeParse(12345));
+// 121212 { success: false, error: [Getter] }
+
+console.log(12121212, stringWithDefault.safeParse(null));
+// 12121212 { success: false, error: [Getter] }
+
+console.log(1212121212, stringWithDefault.safeParse(NaN));
+// 1212121212 { success: false, error: [Getter] }
+
+// https://www.npmjs.com/package/zod#catch
+// catchはundefined、nullやinvalidな値をパースしてくれる
+const numberWithCatch = z.number().catch(42);
+console.log(34, numberWithCatch.safeParse(12345));
+// 34 { success: true, data: 12345 }
+
+console.log(3434, numberWithCatch.safeParse(undefined));
+// 3434 { success: true, data: 42 }
+
+console.log(343434, numberWithCatch.safeParse("123456"));
+// 343434 { success: true, data: 42 }
+
+console.log(34343434, numberWithCatch.safeParse(null));
+// 34343434 { success: true, data: 42 }
+
+console.log(3434343434, numberWithCatch.safeParse(NaN));
+// 3434343434 { success: true, data: 42 }
