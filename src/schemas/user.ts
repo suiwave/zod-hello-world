@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-export const userSchema = z.object({
-    name: z.string().min(1, "ユーザー名は必須です").catch("名無しさん"),
+export const user = z.object({
+    name: z.string().min(1, "ユーザー名は必須です"),
     email: z.string().email("メールアドレス形式で入力してください"),
     // password: z.string()
     //     .min(8, "パスワードは8文字以上である必要があります")
@@ -19,3 +19,5 @@ export const userSchema = z.object({
 //     message: "入力されたパスワードと確認用パスワードが一致していません",
 //     path: ["confirmPassword"],
 // });;
+
+export type User = z.infer<typeof user>;
