@@ -47,5 +47,6 @@ export const user = z.object({
 
 export type User = z.infer<typeof user>;
 
+// genderを参照してラジオボタン用の配列をexportしたい
 // 全体をrefineすると以下の方法でアクセスできない。なぜ
 // const gender = user.shape.gender
