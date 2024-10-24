@@ -76,3 +76,19 @@ console.log(34343434, numberWithCatch.safeParse(null));
 
 console.log(3434343434, numberWithCatch.safeParse(NaN));
 // 3434343434 { success: true, data: 42 }
+
+const stringToNumber = (schema: z.ZodNumber) =>
+    z.preprocess((val) => (val === '' ? undefined : Number(val)), schema);
+
+const birthdaySchema = z.object({
+    year: stringToNumber(z.number()),
+    month: stringToNumber(z.number().min(1).max(12)),
+    day: stringToNumber(z.number().min(1).max(31))
+});
+
+
+// 実際に値をパースしてみる
+const resultbirthdaySchema = birthdaySchema.parse({ year: "2024", month: "4", day: "1" });
+// result は { year: 2024, month: 4, day: 1 } という number の値になる
+
+console.log(resultbirthdaySchema)
