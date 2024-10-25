@@ -4,7 +4,8 @@ import { ErrorMessage } from './ErrorMessage';
 
 type InputElementProps = {
     label: string;
-    errorMessage?: string;
+    errorMessageBirthDay?: string;
+    errorMessageBirthDayField?: string;
     registrationYear: UseFormRegisterReturn;  // ...register("birthday.year")の結果
     registrationMonth: UseFormRegisterReturn;  // ...register("birthday.month")の結果
     registrationDay: UseFormRegisterReturn;  // ...register("birthday.day")の結果
@@ -12,7 +13,8 @@ type InputElementProps = {
 
 export default function InputBirthDay({
     label,
-    errorMessage,
+    errorMessageBirthDay,
+    errorMessageBirthDayField,
     registrationYear,
     registrationMonth,
     registrationDay,
@@ -58,7 +60,8 @@ export default function InputBirthDay({
                     ))}
                 </select>
             </div>
-            {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+            {errorMessageBirthDay && <ErrorMessage errorMessage={errorMessageBirthDay} />}
+            {errorMessageBirthDayField && <ErrorMessage errorMessage={errorMessageBirthDayField} />}
         </>
     )
 }

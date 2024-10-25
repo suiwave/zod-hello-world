@@ -13,9 +13,9 @@ export const user = z.object({
             required_error: '性別を選択してください',
         })),
     birthday: z.object({
-        year: stringToNumber(z.number()),
-        month: stringToNumber(z.number().min(1).max(12)),
-        day: stringToNumber(z.number().min(1).max(31))
+        year: stringToNumber(z.number({ required_error: "年を入力してください" })),
+        month: stringToNumber(z.number({ required_error: "月を入力してください" }).min(1).max(12)),
+        day: stringToNumber(z.number({ required_error: "日を入力してください" }).min(1).max(31))
     }).refine(
         (data) => {
             // 存在しない日付の場合、存在する日付に変換されて返却される

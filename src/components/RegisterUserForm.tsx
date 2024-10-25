@@ -33,7 +33,8 @@ export default function RegisterUserForm() {
                         registrationYear={register("birthday.year")}
                         registrationMonth={register("birthday.month")}
                         registrationDay={register("birthday.day")}
-                        errorMessage={errors.birthday?.root?.message}
+                        errorMessageBirthDay={errors.birthday?.root?.message}
+                        errorMessageBirthDayField={errors.birthday?.year?.message || errors.birthday?.month?.message || errors.birthday?.day?.message}
                     />
                     <InputElement registration={register('email')} label={'メールアドレス'} errorMessage={errors.email?.message} />
                     <InputElement type='password' registration={register('password')} label={'パスワード'} errorMessage={errors.password?.message} />
