@@ -1,5 +1,6 @@
 // register関数の戻り値の型を使用
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { ErrorMessage } from './ErrorMessage';
 
 type InputElementProps = {
     label: string;
@@ -56,10 +57,8 @@ export default function InputBirthDay({
                         </option>
                     ))}
                 </select>
-                {errorMessage && (
-                    <p className="mt-1 rounded p-1 text-sm text-red-500 bg-red-100">{errorMessage}</p>
-                )}
             </div>
+            {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
         </>
     )
 }

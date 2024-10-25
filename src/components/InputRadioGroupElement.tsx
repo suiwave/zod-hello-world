@@ -1,4 +1,5 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { ErrorMessage } from './ErrorMessage';
 
 type RadioOption = {
     label: string;
@@ -40,9 +41,7 @@ export const InputRadioGroupElement = ({
                     </label>
                 ))}
             </div>
-            {errorMessage && (
-                <p className="mt-1 text-sm text-red-500">{errorMessage}</p>
-            )}
+            {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
         </div>
     );
 };

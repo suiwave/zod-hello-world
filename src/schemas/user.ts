@@ -39,7 +39,7 @@ export const user = z.object({
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/,
             "パスワードには小文字、大文字、数字が少なくとも1つずつ含まれている必要があります"
         ),
-    confirmPassword: z.string(),
+    confirmPassword: z.string().min(1, "再度パスワードを入力してください"),
 })
     .refine((data) => data.password === data.confirmPassword, {
         message: "入力されたパスワードと確認用パスワードが一致していません",

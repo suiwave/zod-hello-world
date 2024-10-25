@@ -1,5 +1,6 @@
 // register関数の戻り値の型を使用
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { ErrorMessage } from './ErrorMessage';
 
 type InputElementProps = {
     label: string;
@@ -23,9 +24,7 @@ export default function InputElement({
                 className={`w-full rounded border p-2 ${errorMessage ? 'border-red-500' : 'border-gray-300'}`}
                 {...registration}
             />
-            {errorMessage && (
-                <p className="mt-1 rounded p-1 text-sm text-red-500 bg-red-100">{errorMessage}</p>
-            )}
+            {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
         </div>
     )
 }
