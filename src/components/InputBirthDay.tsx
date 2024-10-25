@@ -19,9 +19,10 @@ export default function InputBirthDay({
     return (
         <>
             {label && <label htmlFor={"birthday"}>{label}</label>}
-            <div role="group" id={"birthday"}>
+            <div role="group" id={"birthday"} className="flex gap-2 items-center">
                 <select
                     {...registrationYear}
+                    className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                     <option value="">年</option>
                     {Array.from({ length: 100 }, (_, i) => {
@@ -35,6 +36,7 @@ export default function InputBirthDay({
                 </select>
                 <select
                     {...registrationMonth}
+                    className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                     <option value="">月</option>
                     {Array.from({ length: 12 }, (_, i) => (
@@ -45,6 +47,7 @@ export default function InputBirthDay({
                 </select>
                 <select
                     {...registrationDay}
+                    className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                     <option value="">日</option>
                     {Array.from({ length: 31 }, (_, i) => (

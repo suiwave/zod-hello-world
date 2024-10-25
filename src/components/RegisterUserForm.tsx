@@ -26,7 +26,7 @@ export default function RegisterUserForm() {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit, onInvalid)}>
-                <div className='grid grid-cols-1 gap-2'>
+                <div className='grid grid-cols-1 gap-4'>
                     <InputElement registration={register('name')} label={'ユーザー名'} errorMessage={errors.name?.message} />
                     <InputRadioGroupElement label='性別' errorMessage={errors.gender?.message} registration={register('gender')} options={genderOptions} />
                     <InputBirthDay label='生年月日'
@@ -38,7 +38,7 @@ export default function RegisterUserForm() {
                     <InputElement registration={register('email')} label={'メールアドレス'} errorMessage={errors.email?.message} />
                     <InputElement type='password' registration={register('password')} label={'パスワード'} errorMessage={errors.password?.message} />
                     <InputElement type='password' registration={register('confirmPassword')} label={'パスワード（確認用）'} errorMessage={errors.confirmPassword?.message} />
-                    <button className='rounded-full bg-slate-400 p-2 hover:opacity-70' type="submit">submit</button>
+                    <button className="w-full rounded-full bg-blue-500 text-white font-semibold py-2 px-4 mt-4 hover:bg-blue-600 transition-opacity duration-200" type="submit">submit</button>
                 </div>
             </form>
         </>

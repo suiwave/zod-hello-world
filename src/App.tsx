@@ -6,12 +6,14 @@ import RegisterUserForm from "./components/RegisterUserForm";
 export default function App() {
   return (
     <>
-      <div className="container w-1/3 ms-auto me-auto">
-        <h1 className="font-bold underline">Zod + React-Hook-Form</h1>
-        {/* <VanillaForm />
-      <ZodForm />
-      <ZodFormV2 /> */}
-        <RegisterUserForm />
+      <div className="bg-gray-100 min-h-screen p-12">
+        <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6">
+          <h1 className="font-bold underline mb-4 text-lg">React-Hook-Form + Zod</h1>
+          {/* <VanillaForm />
+              <ZodForm />
+              <ZodFormV2 /> */}
+          <RegisterUserForm />
+        </div>
       </div>
     </>
   );
